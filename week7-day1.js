@@ -6,7 +6,7 @@ const javaScriptMethod = (arr) => {
     return arr
 }
 
-// console.log(javaScriptMethod(arr))
+console.log(javaScriptMethod(arr))
 
 //! ##########################################################################
 
@@ -31,41 +31,43 @@ const bubbleSortMethod = (arr) => {
     return arr;
 }
 
-// console.log(bubbleSortMethod(arr))
+console.log(bubbleSortMethod(arr))
 
 //! ##########################################################################
 
 const selectionSortMethod = (arr) => {
 
-    for (let i = 0; i < arr.length; i++) { // itea
-        let lowest = i 
+    for (let i = 0; i < arr.length; i++) { // the current value
+        let lowest = i // set your lowest as your i
 
-        for (let j = i + 1; j < arr.length; j++) {
-            if (arr[j] < arr[lowest]) {
-                lowest = j
+        for (let j = i + 1; j < arr.length; j++) { // loop to iterate through the remaining elements and find the lowest value
+            if (arr[j] < arr[lowest]) { // if arr[lowest] which is your current value, is greater than j
+                lowest = j      // then set the j as your new lowest
             }
         }
 
-        [arr[i], arr[lowest]] = [arr[lowest], arr[i]]
+        [arr[i], arr[lowest]] = [arr[lowest], arr[i]] // the part where you swap your i and j
     }
     return arr
 
 }
-// console.log(selectionSortMethod(arr))
+console.log(selectionSortMethod(arr))
 
 //! ##########################################################################
 
 const insertionSortMethod = (arr) => {
 
-    let currValue;
+    let currValue; // initialized a value as current value
 
-    for (let i = 1; i < arr.length; i++) {
-        currValue = arr[i]
+    for (let i = 1; i < arr.length; i++) { // outer loop iterates the first value to compare 
+        currValue = arr[i] // initialized the element arr[i] as the currValue
 
+        // the inner loop will serve as the second value to compare with the currValue, which is arr[i]
+        // j must be greater than and equal to zero AND the j value must be greater than your currValue
         for (let j = i - 1; j >= 0 && arr[j] > currValue; j--) {
-            let temp = arr[j];
-            arr[j] = arr[j + 1]
-            arr[j + 1] = temp
+            let temp = arr[j]; // temporarily store the value of arr[j]
+            arr[j] = arr[j + 1] // the new arr[j] will be arr[j+1], arr[j+1] is the value next to arr[j]
+            arr[j + 1] = temp // arr[j+1] will become the arr[j]
         }
     }
 
