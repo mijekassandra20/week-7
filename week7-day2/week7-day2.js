@@ -77,7 +77,7 @@ const pivot = (arr, left = 0, right = arr.length - 1) => {
     
     // initialize a value that will serve as your pivot, in this case the first element of your array
     let pivot = arr[left];
-    // Store the current pivot index in a variable to keep track of the where the pivot would 
+    // Store the current pivot index in a variable to keep track of the where the pivot should be placed 
     let swapIndex = left;  
 
     for (let i = left + 1; i <= right; i++) { // to iterate all the elements of the array
