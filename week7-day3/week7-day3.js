@@ -275,7 +275,7 @@ function letterChanges(str) {
     let result = "" 
     
     for(let i = 0; i < str.length; i++){
-        let letter = String.fromCharCode(str.charCodeAt(i) + 1).toLowerCase();;
+        let letter = String.fromCharCode(str.charCodeAt(i) + 1).toLowerCase();
         
         if ( letter === 'a' || letter === 'e' || letter=== 'i' || letter === 'o' || letter === 'u'){
             vowels = letter.toUpperCase()
@@ -325,16 +325,36 @@ console.log(addAll(2,5,6,7))
 
 // ex. sumAllPrimes(10) == 17
 
-function sumAllPrimes() {
+function checkPrimeNumbers(num){
     
-
+    for(let i = 2;i < num; i++){
+        if (num % i === 0 ){
+            return false;
+        }
+    }
+    return true
+    
 }
 
-console.log(sumAllPrimes(10))
+function sumAllPrimes(num) {
+    
+    let sum = 0
+    
+    for (let i = 2; i <= num; i++){
+        if(checkPrimeNumbers(i)){
+            sum += i
+        }
+    }
+    
+    return sum
+    
+}
+
+console.log(sumAllPrimes(10)) // 17
 
 //! ###############################################
 
-// CHALLENGE 14: SEEK & DESTROY
+// TODO CHALLENGE 14: SEEK & DESTROY
 // Remove from the array whatever is in the following arguments. Return the leftover numbers in an array
 
 // ex. seekAndDestroy([2, 3, 4, 6, 6, 'hello'], 2, 6) == [3, 4, 'hello']
@@ -359,18 +379,21 @@ console.log(seekAndDestroy([2, 3, 4, 6, 6, 'hello'], 2, 6))
 
 //! ###############################################
 
-// CHALLENGE 15: SORT BY HEIGHT
+// TODO CHALLENGE 15: SORT BY HEIGHT
 // Some people are standing in a row in a park. There are trees between them which cannot be moved.
 // Your task is to rearrange the people by their heights in a non-descending order without moving the trees.
 
 // ex.
 // a = [-1, 150, 190, 170, -1, -1, 160, 180]
 // sortByHeight(a) == [-1, 150, 160, 170, -1, -1, 180, 190]
-function sortByHeight() {}
+function sortByHeight() {
+
+
+}
 
 //! ###############################################
 
-// CHALLENGE 16: MISSING LETTERS
+// TODO CHALLENGE 16: MISSING LETTERS
 // Find the missing letter in the passed letter range and return it. If all letters are present, return undefined
 
 // ex.
@@ -386,7 +409,7 @@ function missingLetters() {
 
 //! ###############################################
 
-// CHALLENGE 17: EVEN & ODD SUMS
+// TODO CHALLENGE 17: EVEN & ODD SUMS
 // Take in an array and return an array of the sums of even and odd numbers
 // ex.
 // evenOddSums([50, 60, 60, 45, 71]) == [170, 116]
