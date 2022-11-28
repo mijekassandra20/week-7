@@ -137,7 +137,7 @@ console.log(fizzBuzz())
 
 //! ##############################################################
 
-// CHALLENGE 7: LONGEST WORD
+// TODO CHALLENGE 7: LONGEST WORD
 // Return the longest word of a string
 // ex. longestWord('Hi there, my name is Brad') === 'there,'
 
@@ -178,7 +178,6 @@ console.log(longestWord('Hi there, my name is Brad'))
 function chunkArray(arr, len) {
 
     if(!len) return arr;
-    if(arr.length < len) return null;
     
     let newArr = []
     let i = 0;
@@ -207,7 +206,7 @@ function flattenArray(arrays) {
     
     for (let n of arrays){
         if (Array.isArray(n)){
-            flattened = flattened.concat(n)
+            flattened = flattened.concat(flattenArray(n))
         } else {
             flattened.push(n)
         }
@@ -294,8 +293,6 @@ function letterChanges(str) {
 }
 
 console.log(letterChanges('hello there')) //Ifmmp UIfsf
-console.log(letterChanges('Ifmmp UIfsf')) //Ifmmp UIfsf
-
 
 //! ##############################################
 
@@ -386,10 +383,28 @@ console.log(seekAndDestroy([2, 3, 4, 6, 6, 'hello'], 2, 6))
 // ex.
 // a = [-1, 150, 190, 170, -1, -1, 160, 180]
 // sortByHeight(a) == [-1, 150, 160, 170, -1, -1, 180, 190]
-function sortByHeight() {
 
+function sortByHeight(arr) {
+    
+    for (let i = 0; i < arr.length; i++){
+        if (arr[i] !== -1){
+            let lowest = i
+            
+            for (let j = i + 1; j < arr.length; j++){
+                if (arr[j] !== -1){
+                    if(arr[j] < arr[lowest]){
+                        lowest = j
+                    }
+                }
+            }
+            [arr[i], arr[lowest]] = [arr[lowest], arr[i]]
+        }
+    }
+    return arr
 
 }
+
+console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))
 
 //! ###############################################
 
@@ -401,11 +416,25 @@ function sortByHeight() {
 // missingLetters("abcdefghjklmno") == "i"
 // missingLetters("abcdefghijklmnopqrstuvwxyz") == undefined
 
-function missingLetters() {
+function missingLetters(str) {
 
-    let
+    let alphabet = "abcdefghijklmnopqrstuvwxyz"
+    
+    let j = 0;
+    
+    for(let i = 0; i < str.length; i++){
+        if(str[i] === alphabet[j]){
+            j++
+        } else{
+           return alphabet[j]
+        }
+    }
 
 }
+
+console.log(missingLetters("abce"))
+console.log(missingLetters("abcdefghjklmno"))
+console.log(missingLetters("abcdefghijklmnopqrstuvwxyz"))
 
 //! ###############################################
 
@@ -438,7 +467,57 @@ console.log(evenOddSums([50, 60, 60, 45, 71]))
 
 //! ###############################################
 
+// TODO Problem #18
 
+// There is a malfunctioning keyboard where some letter keys do not work.
+// All other keys on the keyboard work properly.
+// Given a string text of words separated by a single space (no leading or trailing spaces)
+// and a string brokenLetters
+// of all distinct letter keys that are broken, return the number of
+// words in text you can fully type using this keyboard.
+
+// Example 1:
+// Input: text = "hello world", brokenLetters = "ad"
+// Output: 1
+// Explanation: We cannot type "world" because the 'd' key is broken.
+
+// Example 2:
+// Input: text = "leet code", brokenLetters = "lt"
+// Output: 1
+// Explanation: We cannot type "leet" because the 'l' and 't' keys are broken.
+
+// Example 3:
+// Input: text = "leet code", brokenLetters = "e"
+// Output: 0
+// Explanation: We cannot type either word because the 'e' key is broken.
+
+// Constraints:
+// 1 <= text.length <= 104
+// 0 <= brokenLetters.length <= 26
+// text consists of words separated by a single space without any leading or trailing spaces.
+// Each word only consists of lowercase English letters.
+// brokenLetters consists of distinct lowercase English letters.
+
+const canBeTypedWords = (text, brokenLetters) => {
+    
+    let splitText = text.split(' ')
+    let words = splitText.length;
+
+    for (let i of splitText) {
+        for (let j of brokenLetters){
+            if (i.includes(j)){
+                words--
+                break;
+            }
+        }
+    }
+
+  return words
+}
+
+console.log(canBeTypedWords("hello world", "ad"))
+console.log(canBeTypedWords("leet code", "lt"))
+console.log(canBeTypedWords("leet code", "e"))
 
 
 
